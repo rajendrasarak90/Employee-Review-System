@@ -1,7 +1,8 @@
 # Employee-Review-System
 A full stack application used for reviewing employee.
-Hosted Link : 
 
+### Hosted Link :
+https://ers-rajendrasarak.onrender.com/
 
 ### Description
 
@@ -31,25 +32,6 @@ After reaching the project directory you have to run the following the command.
 ### Features
 
   You can review the employees. The admin has the special power to assing, the task to employee, remove the employee, add new admin, and also employee;
-  
-  
-  # HomePage / Admin View
-
-  # Home page / Employee view
-
-  
-  # Sign-Up
-
-
-  # Sign-In
-
-  # Forget Password
-  
-  # Assign Task
-
-  # Employee List
-  
-
   
 
 ### Folder Structure
