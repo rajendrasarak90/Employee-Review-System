@@ -1,8 +1,10 @@
 # Employee-Review-System
-A full stack application used for reviewing employee.
+A full stack application used for reviewing employees.
 
 ### Hosted Link :
 https://ers-rajendrasarak.onrender.com/
+### Explanation Video Link :
+https://youtu.be/HMTBAoyIJw8
 
 ### Description
 
