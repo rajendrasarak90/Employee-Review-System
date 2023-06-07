@@ -1,57 +1,61 @@
-const express = require('express'); // requiring express, 
+const express = require("express"); // requiring express,
 const port = 8000; // assigning port, so that I can try and test as this post,
-const app = express(); 
+const app = express();
 
 // requiring express-ejs-layout, it will help in rendering the page.
-const expressLayout = require('express-ejs-layouts');
+const expressLayout = require("express-ejs-layouts");
 
 // requring DataBase
-const db = require('./config/mongoose');
+const db = require("./config/mongoose");
 
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 // Creating session
-const session = require('express-session');
-const passport = require('passport');
-const passportLocal = require('./config/passport-local');
+const session = require("express-session");
+const passport = require("passport");
+const passportLocal = require("./config/passport-local");
 
 // requiring mongo-store, so that we can use the existing user even after server start
-const MongoStore = require('connect-mongo');
+const MongoStore = require("connect-mongo");
 
 // they are used for showing action notifications
-const flash = require('connect-flash'); 
-const flashMiddleWare = require('./config/flashMiddleware');
+const flash = require("connect-flash");
+const flashMiddleWare = require("./config/flashMiddleware");
 
 // For getting the output from req.body(it will parse the upcoming request to String or Arrays).
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 // For using the file in assets folder.
-app.use(express.static('./assets'));
+app.use(express.static("./assets"));
 
 // Setting up the view engine
-app.set('view engine','ejs');
-app.set('views','./views');
+app.set("view engine", "ejs");
+app.set("views", "./views");
 
 app.use(expressLayout);
 
-// mongo store is used to store the session cookie in the db 
-app.use(session({
+// mongo store is used to store the session cookie in the db
+app.use(
+  session({
     name: "ERS",
-    // change secret during before deployment in production 
+    // change secret during before deployment in production
     secret: "employeeReviewSystem",
     saveUninitialized: false,
     resave: false,
     cookie: {
-        maxAge: (1000 * 60 * 100)
+      maxAge: 1000 * 60 * 100,
     },
-    store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://whiteWolff:praduman@cluster0.an8uy3k.mongodb.net/ERS?retryWrites=true&w=majority',
-        autoRemove: 'disabled'
-    },
-        (err) => {
-            console.log(err || 'connect-mongo setup ok');
-        }
-    )
-}))
+    store: MongoStore.create(
+      {
+        mongoUrl:
+          "mongodb+srv://rajendrasarak622:4cvPhC9nQ4UZ3piU@cluster2.phupiw4.mongodb.net/?retryWrites=true&w=majority",
+        autoRemove: "disabled",
+      },
+      (err) => {
+        console.log(err || "connect-mongo setup ok");
+      }
+    ),
+  })
+);
 
 // Using passport
 app.use(passport.initialize());
@@ -63,14 +67,13 @@ app.use(flash());
 app.use(flashMiddleWare.setFlash);
 
 // setting up the router, following MVC structure.
-app.use('/' , require('./routes/index'));
-
+app.use("/", require("./routes/index"));
 
 // Setting up the server at the given port
-app.listen(port, function(err){
-    if(err){
-        console.log("Error in running the app.");
-        return ;
-    }
-    console.log("Server is up and running at port ", + port);
+app.listen(port, function (err) {
+  if (err) {
+    console.log("Error in running the app.");
+    return;
+  }
+  console.log("Server is up and running at port ", +port);
 });
